@@ -2,11 +2,12 @@
 
 const options = {
     hosts: {
-        domain: 'jitsi-meet.example.com',
-        muc: 'conference.jitsi-meet.example.com' // FIXME: use XEP-0030
-    },
-    bosh: '//jitsi-meet.example.com/http-bind', // FIXME: use xep-0156 for that
+        domain: 'beta.meet.jit.si',
 
+        muc: 'conference.beta.meet.jit.si', // FIXME: use XEP-0030
+        focus: 'focus.beta.meet.jit.si',
+    },
+    bosh:'https://beta.meet.jit.si/http-bind', // FIXME: use xep-0156 for that
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet'
 };
@@ -44,7 +45,7 @@ function onLocalTracks(tracks) {
                 console.log(
                     `track audio output device was changed to ${deviceId}`));
         if (localTracks[i].getType() === 'video') {
-            $('body').append(`<video autoplay='1' id='localVideo${i}' />`);
+            $('.flex-container').append(`<video class="flex-item" autoplay='1' id='localVideo${i}' />`);
             localTracks[i].attach($(`#localVideo${i}`)[0]);
         } else {
             $('body').append(
@@ -88,8 +89,8 @@ function onRemoteTrack(track) {
     const id = participant + track.getType() + idx;
 
     if (track.getType() === 'video') {
-        $('body').append(
-            `<video autoplay='1' id='${participant}video${idx}' />`);
+        $('.flex-container').append(
+            `<video class="flex-item" autoplay='1' id='${participant}video${idx}' />`);
     } else {
         $('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);
@@ -128,7 +129,7 @@ function onUserLeft(id) {
  * That function is called when connection is established successfully
  */
 function onConnectionSuccess() {
-    room = connection.initJitsiConference('conference', confOptions);
+    room = connection.initJitsiConference('audiotest', confOptions);
     room.on(JitsiMeetJS.events.conference.TRACK_ADDED, onRemoteTrack);
     room.on(JitsiMeetJS.events.conference.TRACK_REMOVED, track => {
         console.log(`track removed!!!${track}`);
