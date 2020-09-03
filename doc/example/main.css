@@ -15,3 +15,16 @@
   margin-top: 10px;
   
 }
+
+.speaking {
+    animation: pulseoutline 1s infinite;
+    animation-direction: alternate ;
+    border: solid 5px #a9c4f5;
+    margin: 5px;
+  }
+  
+  @keyframes pulseoutline {
+    0%   {margin: 5px; border: solid 5px #a9c4f5;}
+    50%  {margin: 5px; border: solid 10px #a9c4f5;}
+  }
+  
