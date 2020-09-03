@@ -58,6 +58,24 @@ function onLocalTracks(tracks) {
     }
 }
 
+function attachToAudio(id) {
+    // var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    // var myAudio = document.querySelector('#' + id);
+    // var source = audioCtx.createMediaElementSource(myAudio);
+    // source.crossOrigin = "anonymous";
+    
+    // var analyser = audioCtx.createAnalyser();
+
+    // analyser.fftSize = 2048;
+    // var bufferLength = analyser.frequencyBinCount;
+    // var dataArray = new Float32Array(bufferLength);
+
+    // source.connect(analyser);
+    // analyser.connect(audioCtx.destination);
+
+    // analyser.getFloatTimeDomainData(dataArray);
+}
+
 /**
  * Handles remote tracks
  * @param track JitsiTrack object
@@ -95,6 +113,9 @@ function onRemoteTrack(track) {
         $('body').append(
             `<audio autoplay='1' id='${participant}audio${idx}' />`);
     }
+
+    attachToAudio(`${participant}audio${idx}`)
+
     track.attach($(`#${id}`)[0]);
 }
 
