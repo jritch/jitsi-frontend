@@ -1,2 +1,1 @@
-npm install
-python -m http.server
+web: npm install; python -m http.server
